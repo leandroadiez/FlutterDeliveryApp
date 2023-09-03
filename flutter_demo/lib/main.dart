@@ -17,13 +17,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: MyColors.primaryColor,
+        )),
         debugShowCheckedModeBanner: false,
         title: 'Delivery App Flutter',
         initialRoute: 'login',
         routes: {'login': (BuildContext context) => const LoginPage()},
-        theme: ThemeData(
-          primaryColor: MyColors.primaryColor,
-        )
     );
   }
 }
