@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/src/utils/my_colors.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,24 +12,48 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Delivery App'),
-
-      ),
-      body: Stack(children: [
-        Container(
-            width: 150,
-            height: 150,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(135)),
-                color: Colors.lime
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Image.asset('assets/img/delivery.png',
+            width: 200,
+            height: 200),
+            const TextField(
+              decoration: InputDecoration(
+                hintText: 'Username',
+              ),
             ),
+            const TextField(
+                decoration: InputDecoration(
+                    hintText: 'Contraseña',
+                ),
+            ),
+            ElevatedButton(
+                onPressed: (){},
+                child: Text('Ingresar')),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('No tienes cuenta?',
+                style: TextStyle(
+                  color: MyColors.primaryColor
+                )),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                    'Registrate',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: MyColors.primaryColor
+                    )
+                )
+              ],
+            )
+          ],
         ),
-        Container(
-          margin: EdgeInsets.only(top: 60, left: 50),
-          child: Text('LOGIN TEST'),
-        ),
-      ],)
+      )
     );
   }
 }
