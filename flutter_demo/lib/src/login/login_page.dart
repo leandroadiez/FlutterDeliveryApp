@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         Container(
           margin: EdgeInsets.only(top: 60, left: 50),
-          child: Text('LOGIN'),
+          child: Text('LOGIN TEST'),
         ),
       ],)
     );
