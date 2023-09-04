@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_demo/src/login/login_controller.dart';
 import 'package:flutter_demo/src/utils/my_colors.dart';
 import 'package:lottie/lottie.dart';
 
@@ -10,8 +12,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  LoginController _con = new LoginController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('INIT STATE');
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      print('Scheduler binding');
+      _con.init(context); //inicio los controllers
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    print('METODO BUILD');
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -45,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
     return Text (
       'LOGIN',
       style: TextStyle(
+        fontFamily: 'Roboto',
         color: Colors.white,
         fontWeight: FontWeight.bold,
         fontSize: 22,
@@ -66,8 +83,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _lottieAnimation () {
     return Container(
       margin: EdgeInsets.only(
-          top: 100,
-          bottom: MediaQuery.of(context).size.height * 0.2),
+          top: 140,
+          bottom: MediaQuery.of(context).size.height * 0.18),
       child: Lottie.asset('assets/json/animation_lm44a7no.json',
       width: 350,
       height: 200,
@@ -154,12 +171,15 @@ class _LoginPageState extends State<LoginPage> {
         SizedBox(
           width: 5,
         ),
-        Text(
-            'Registrate',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: MyColors.primaryColor
-            )
+        GestureDetector(
+          onTap: _con.goToRegisterPage,
+          child: Text(
+              'Registrate',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: MyColors.primaryColor
+              )
+          ),
         )
       ],
     );
