@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/src/login/login_page.dart';
-import 'package:flutter_demo/src/register/register_page.dart';
+import 'package:flutter_demo/src/pages/login/login_page.dart';
+import 'package:flutter_demo/src/pages/register/register_page.dart';
 import 'package:flutter_demo/src/utils/my_colors.dart';
 
 void main() {

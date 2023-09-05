@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_demo/src/register/register_controller.dart';
+import 'package:flutter_demo/src/pages/register/register_controller.dart';
 
-import '../utils/my_colors.dart';
+import '../../utils/my_colors.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
