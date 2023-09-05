@@ -42,15 +42,17 @@ class _LoginPageState extends State<LoginPage> {
                 top: 60,
                 left: 25,
             ),
-            Column(
-              children: [
-                _lottieAnimation(),
-                //_imageBanner(),
-                _textFieldUsername(),
-                _textFieldPassword(),
-                _buttonLogin(),
-                _textDontHaveAccount(),
-              ],
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  _lottieAnimation(),
+                  //_imageBanner(),
+                  _textFieldEmail(),
+                  _textFieldPassword(),
+                  _buttonLogin(),
+                  _textDontHaveAccount(),
+                ],
+              ),
             ),
           ],
         ),
@@ -64,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
         fontFamily: 'Roboto',
         color: Colors.white,
         fontWeight: FontWeight.bold,
-        fontSize: 22,
+        fontSize: 21,
       )
     );
   }
@@ -102,7 +104,8 @@ class _LoginPageState extends State<LoginPage> {
           height: 200),
     );
   }
-  Widget _textFieldUsername (){
+
+  Widget _textFieldEmail (){
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
@@ -111,8 +114,10 @@ class _LoginPageState extends State<LoginPage> {
       ),
 
       child: TextField(
+        controller: _con.emailController,
+        keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-          hintText: 'Username',
+          hintText: 'Email',
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(20),
           hintStyle: TextStyle(
@@ -123,6 +128,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
   Widget _textFieldPassword () {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
@@ -132,6 +138,8 @@ class _LoginPageState extends State<LoginPage> {
       ),
 
       child: TextField(
+        controller: _con.passwordController,
+        obscureText: true,
         decoration: InputDecoration(
           hintText: 'Password',
           border: InputBorder.none,
@@ -144,13 +152,14 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
   Widget _buttonLogin () {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: ElevatedButton(
-          onPressed: (){},
-          child: const Text('Ingresar'),
+          onPressed: _con.login,
+          child: const Text('Login'),
       style: ElevatedButton.styleFrom(
         backgroundColor: MyColors.primaryColor,
         shape: RoundedRectangleBorder(
@@ -160,11 +169,12 @@ class _LoginPageState extends State<LoginPage> {
       )),
     );
   }
+
   Widget _textDontHaveAccount(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('No tienes cuenta?',
+        Text("Don't have an account?",
             style: TextStyle(
                 color: MyColors.primaryColor
             )),
@@ -174,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
         GestureDetector(
           onTap: _con.goToRegisterPage,
           child: Text(
-              'Registrate',
+              'Sign Up',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: MyColors.primaryColor
