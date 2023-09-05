@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/src/models/response_api.dart';
+import 'package:flutter_demo/src/models/user.dart';
+import 'package:flutter_demo/src/provider/users_provider.dart';
 
 class RegisterController {
   BuildContext? context;
@@ -9,11 +12,14 @@ class RegisterController {
   TextEditingController passwordController = new TextEditingController();
   TextEditingController confirmPasswordController = new TextEditingController();
 
+  UsersProvider usersProvider = new UsersProvider();
+
   Future? init(BuildContext context){
     this.context = context;
+    usersProvider.init(context);
   }
 
-  void register(){
+  void register() async {
     String email = emailController.text.trim();
     String name = nameController.text;
     String lastname = lastnameController.text;
@@ -21,6 +27,17 @@ class RegisterController {
     String password = passwordController.text.trim();
     String confirmPassword = confirmPasswordController.text.trim();
 
+    User user = new User(
+      email: email,
+      name: name,
+      lastname: lastname,
+      phone: phone,
+      password: password
+    );
+
+    ResponseApi? responseApi = await usersProvider.create(user);
+
+    print('RESPUESTA: ${responseApi?.toJson()}');
     print(email);
     print(name);
     print(lastname);
