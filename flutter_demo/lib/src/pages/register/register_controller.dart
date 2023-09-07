@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/src/models/response_api.dart';
 import 'package:flutter_demo/src/models/user.dart';
 import 'package:flutter_demo/src/provider/users_provider.dart';
+import 'package:flutter_demo/src/utils/my_snackbar.dart';
 
 class RegisterController {
   BuildContext? context;
@@ -26,6 +27,12 @@ class RegisterController {
     String phone = phoneController.text.trim();
     String password = passwordController.text.trim();
     String confirmPassword = confirmPasswordController.text.trim();
+
+    if(email.isEmpty || name.isEmpty || lastname.isEmpty || phone.isEmpty || password.isEmpty || confirmPassword.isEmpty){
+      MySnackbar.show(context, 'Debes ingresar todos los campos');
+
+      return;
+    }
 
     User user = new User(
       email: email,
