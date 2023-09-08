@@ -30,7 +30,14 @@ class RegisterController {
 
     if(email.isEmpty || name.isEmpty || lastname.isEmpty || phone.isEmpty || password.isEmpty || confirmPassword.isEmpty){
       MySnackbar.show(context, 'Debes ingresar todos los campos');
-
+      return;
+    }
+    if(confirmPassword != password){
+      MySnackbar.show(context, 'Las contraseñas no coinciden');
+      return;
+    }
+    if(password.length < 6){
+      MySnackbar.show(context, 'La contraseña debe tener al menos 6 caracteres');
       return;
     }
 
@@ -45,12 +52,6 @@ class RegisterController {
     ResponseApi? responseApi = await usersProvider.create(user);
 
     print('RESPUESTA: ${responseApi?.toJson()}');
-    print(email);
-    print(name);
-    print(lastname);
-    print(phone);
-    print(password);
-    print(confirmPassword);
   }
 
 
