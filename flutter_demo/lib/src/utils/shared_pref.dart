@@ -25,4 +25,9 @@ class SharedPref {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove(key);
   }
+  
+  void logout(BuildContext context) async {
+    await remove('user');
+    Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
+  }
 }
