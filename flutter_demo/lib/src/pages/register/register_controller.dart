@@ -55,5 +55,9 @@ class RegisterController {
     print('RESPUESTA: ${responseApi?.toJson()}');
   }
 
+  void back(){
+    Navigator.pop(context!);
+  }
+
 
 }
