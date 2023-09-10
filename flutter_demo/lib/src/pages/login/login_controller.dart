@@ -25,7 +25,6 @@ class LoginController {
     String password = passwordController.text.trim();
 
     ResponseApi? responseApi = await usersProvider.login(email, password);
-
     MySnackbar.show(context, responseApi?.message);
     print ('EMAIL: $email');
     print ('PASSWORD: $password');
