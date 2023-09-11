@@ -9,7 +9,6 @@ class ClientProductsListController {
     this.context = context;
   }
   logout(){
-
     _sharedPref.logout(context!);
   }
 }

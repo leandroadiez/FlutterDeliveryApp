@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/src/models/response_api.dart';
 import 'package:flutter_demo/src/models/user.dart';
@@ -35,8 +34,8 @@ class LoginController {
 
     ResponseApi? responseApi = await usersProvider.login(email, password);
 
-    print ('EMAIL: $email');
-    print ('PASSWORD: $password');
+    //print ('EMAIL: $email');
+    //print ('PASSWORD: $password');
 
     if(responseApi != null && responseApi.success!){
       User user = User.fromJson(responseApi.data);
