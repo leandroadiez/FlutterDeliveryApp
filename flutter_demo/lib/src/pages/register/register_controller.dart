@@ -58,6 +58,4 @@ class RegisterController {
   void back(){
     Navigator.pop(context!);
   }
-
-
 }
