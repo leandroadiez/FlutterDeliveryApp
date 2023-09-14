@@ -8,6 +8,8 @@ class ClientProductsListController {
   Future init(BuildContext context) async {
     this.context = context;
   }
+
+
   logout(){
     _sharedPref.logout(context!);
   }
