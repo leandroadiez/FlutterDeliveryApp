@@ -18,6 +18,7 @@ class RegisterController {
   Future? init(BuildContext context){
     this.context = context;
     usersProvider.init(context);
+    return null;
   }
 
   void register() async {
@@ -46,11 +47,18 @@ class RegisterController {
       name: name,
       lastname: lastname,
       phone: phone,
-      password: password
+      password: password, roles: []
     );
 
     ResponseApi? responseApi = await usersProvider.create(user);
+
     MySnackbar.show(context, responseApi?.message);
+
+    if(responseApi != null && responseApi.success!){
+      Future.delayed(Duration(seconds: 3), (){
+        Navigator.pushReplacementNamed(context!, 'login');
+      });
+    }
 
     print('RESPUESTA: ${responseApi?.toJson()}');
   }
@@ -58,4 +66,5 @@ class RegisterController {
   void back(){
     Navigator.pop(context!);
   }
+
 }
